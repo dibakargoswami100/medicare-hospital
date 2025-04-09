@@ -33,8 +33,8 @@ const HomeImage = () => {
           <div className="order-1 lg:order-2 relative">
             <div className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
-                alt="Medical professionals in a hospital" 
+                src="/lovable-uploads/7cf11c1a-90fe-4270-98dd-b6df39e2d244.png" 
+                alt="MediCare healthcare professionals" 
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-hospital-primary/20 to-transparent"></div>
