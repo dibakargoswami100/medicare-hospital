@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { CalendarPlus, Menu, Phone, X } from "lucide-react";
 
@@ -28,11 +29,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", url: "#hero" },
-    { name: "Services", url: "#services" },
-    { name: "Doctors", url: "#doctors" },
-    { name: "About", url: "#about" },
-    { name: "Contact", url: "#contact" },
+    { name: "Home", url: "/" },
+    { name: "About", url: "/about" },
+    { name: "Services", url: "/#services" },
+    { name: "Doctors", url: "/#doctors" },
+    { name: "Contact", url: "/contact" },
   ];
 
   return (
@@ -46,32 +47,34 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <a href="#" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <span className="text-2xl font-bold text-hospital-primary">
               MediCare
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8 items-center">
             {navLinks.map((link, index) => (
-              <a
+              <Link
                 key={index}
-                href={link.url}
+                to={link.url}
                 className="animated-link text-gray-700 hover:text-hospital-primary transition-colors duration-300"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
             <div className="flex items-center gap-4">
               <a href="tel:+1234567890" className="flex items-center text-hospital-primary gap-1">
                 <Phone className="h-4 w-4" />
                 <span className="font-medium">Emergency: 123-456-7890</span>
               </a>
-              <Button className="bg-hospital-primary hover:bg-hospital-dark">
-                <CalendarPlus className="mr-2 h-4 w-4" />
-                Book Appointment
-              </Button>
+              <Link to="/book-appointment">
+                <Button className="bg-hospital-primary hover:bg-hospital-dark">
+                  <CalendarPlus className="mr-2 h-4 w-4" />
+                  Book Appointment
+                </Button>
+              </Link>
             </div>
           </div>
 
@@ -92,23 +95,25 @@ const Navbar = () => {
         >
           <div className="flex flex-col space-y-4">
             {navLinks.map((link, index) => (
-              <a
+              <Link
                 key={index}
-                href={link.url}
+                to={link.url}
                 className="text-gray-700 hover:text-hospital-primary transition-colors py-2"
                 onClick={toggleMenu}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
             <a href="tel:+1234567890" className="flex items-center text-hospital-primary gap-1 py-2">
               <Phone className="h-4 w-4" />
               <span className="font-medium">Emergency: 123-456-7890</span>
             </a>
-            <Button className="bg-hospital-primary hover:bg-hospital-dark w-full">
-              <CalendarPlus className="mr-2 h-4 w-4" />
-              Book Appointment
-            </Button>
+            <Link to="/book-appointment" onClick={toggleMenu}>
+              <Button className="bg-hospital-primary hover:bg-hospital-dark w-full">
+                <CalendarPlus className="mr-2 h-4 w-4" />
+                Book Appointment
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

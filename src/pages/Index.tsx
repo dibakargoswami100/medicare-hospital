@@ -2,6 +2,7 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import HomeImage from "@/components/HomeImage";
 import Services from "@/components/Services";
 import DoctorProfiles from "@/components/DoctorProfiles";
 import Emergency from "@/components/Emergency";
@@ -12,6 +13,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <Hero />
+      <HomeImage />
       <Services />
       <DoctorProfiles />
       <Emergency />
