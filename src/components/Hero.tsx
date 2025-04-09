@@ -36,7 +36,7 @@ const Hero = () => {
           <div className="relative h-full opacity-0 animate-fade-in delay-200">
             <div className="aspect-square relative rounded-2xl overflow-hidden shadow-xl animate-float">
               <div className="absolute inset-0 bg-hospital-primary/5"></div>
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1638202993928-7d113071a5a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80')] bg-cover bg-center"></div>
+              <div className="absolute inset-0 bg-[url('https://plus.unsplash.com/premium_photo-1723673116192-cceba25fb3c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center"></div>
             </div>
             <div className="absolute -bottom-5 -left-5 bg-white rounded-lg shadow-lg p-4 animate-pulse">
               <div className="flex items-center gap-3">
