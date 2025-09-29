@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon, Clock, CheckCircle } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import emailjs from '@emailjs/browser';
 
 const departments = [
   "Cardiology",
@@ -68,32 +69,61 @@ const BookAppointment = () => {
     setStep(step - 1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Prepare email template parameters
+      const templateParams = {
+        to_name: `${formData.firstName} ${formData.lastName}`,
+        to_email: formData.email,
+        from_name: "MediCare Hospital",
+        patient_name: `${formData.firstName} ${formData.lastName}`,
+        patient_email: formData.email,
+        patient_phone: formData.phone,
+        department: formData.department,
+        appointment_date: date ? format(date, "PPP") : "",
+        appointment_time: timeSlot,
+        additional_message: formData.message || "No additional information provided",
+      };
+
+      // Send confirmation email using EmailJS
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        templateParams,
+        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+      );
+
       toast({
-        title: "Appointment Booked!",
-        description: "We'll contact you to confirm your appointment.",
+        title: "Appointment Booked Successfully!",
+        description: "We've sent a confirmation email to your address. We'll contact you to confirm your appointment.",
         variant: "default",
       });
-      
-      // Reset form
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        department: "",
-        message: "",
+
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Appointment Booked",
+        description: "Your appointment is booked but we couldn't send a confirmation email. We'll still contact you to confirm.",
+        variant: "destructive",
       });
-      setDate(undefined);
-      setTimeSlot("");
-      setStep(1);
-      setIsSubmitting(false);
-    }, 1500);
+    }
+    
+    // Reset form
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      department: "",
+      message: "",
+    });
+    setDate(undefined);
+    setTimeSlot("");
+    setStep(1);
+    setIsSubmitting(false);
   };
 
   return (
