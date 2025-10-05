@@ -90,10 +90,10 @@ const BookAppointment = () => {
 
       // Send confirmation email using EmailJS
       await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        'service_dcgv6a6',
+        'template_bn4v0pa',
         templateParams,
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+        '3VOSvocTx8lIPmKIL'
       );
 
       toast({
