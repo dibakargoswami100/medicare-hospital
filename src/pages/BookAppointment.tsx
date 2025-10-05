@@ -74,18 +74,13 @@ const BookAppointment = () => {
     setIsSubmitting(true);
     
     try {
-      // Prepare email template parameters
+      // Prepare email template parameters matching EmailJS template variables
       const templateParams = {
-        to_name: `${formData.firstName} ${formData.lastName}`,
-        to_email: formData.email,
-        from_name: "MediCare Hospital",
-        patient_name: `${formData.firstName} ${formData.lastName}`,
-        patient_email: formData.email,
-        patient_phone: formData.phone,
-        department: formData.department,
+        user_name: `${formData.firstName} ${formData.lastName}`,
+        user_email: formData.email,
+        user_phone: formData.phone,
         appointment_date: date ? format(date, "PPP") : "",
-        appointment_time: timeSlot,
-        additional_message: formData.message || "No additional information provided",
+        message: formData.message || "No additional information provided",
       };
 
       // Send confirmation email using EmailJS
