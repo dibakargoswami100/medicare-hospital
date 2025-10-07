@@ -12,6 +12,7 @@ import { format } from "date-fns";
 import { CalendarIcon, Clock, CheckCircle } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import emailjs from '@emailjs/browser';
+import { supabase } from "@/integrations/supabase/client";
 
 const departments = [
   "Cardiology",
@@ -74,12 +75,15 @@ const BookAppointment = () => {
     setIsSubmitting(true);
     
     try {
+      const formattedDate = date ? format(date, "PPP") : "";
+      const appointmentDateTime = `${formattedDate} at ${timeSlot}`;
+      
       // Prepare email template parameters matching EmailJS template variables
       const templateParams = {
         user_name: `${formData.firstName} ${formData.lastName}`,
         user_email: formData.email,
         user_phone: formData.phone,
-        appointment_date: date ? format(date, "PPP") : "",
+        appointment_date: appointmentDateTime,
         message: formData.message || "No additional information provided",
       };
 
@@ -91,19 +95,56 @@ const BookAppointment = () => {
         '3VOSvocTx8lIPmKIL'
       );
 
-      toast({
-        title: "Appointment Booked Successfully!",
-        description: "We've sent a confirmation email to your address. We'll contact you to confirm your appointment.",
-        variant: "default",
-      });
+      // Save appointment to Supabase database
+      const { error: supabaseError } = await supabase
+        .from('appointments')
+        .insert({
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          department: formData.department,
+          appointment_date: appointmentDateTime,
+          message: formData.message || null,
+        });
+
+      if (supabaseError) {
+        // Check if it's a duplicate booking
+        if (supabaseError.code === '23505') {
+          console.error('❌ Duplicate appointment:', supabaseError);
+          toast({
+            title: "Duplicate Appointment",
+            description: "You already have an appointment booked for this date and time.",
+            variant: "destructive",
+          });
+          setIsSubmitting(false);
+          return;
+        }
+        
+        console.error('❌ Error saving appointment:', supabaseError);
+        toast({
+          title: "Email Sent",
+          description: "Confirmation email sent, but we couldn't save your appointment to our records. Please contact us directly.",
+          variant: "destructive",
+        });
+      } else {
+        console.log('✅ Appointment saved successfully in Supabase.');
+        toast({
+          title: "Appointment Booked Successfully!",
+          description: "We've sent a confirmation email to your address. We'll contact you to confirm your appointment.",
+          variant: "default",
+        });
+      }
 
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('❌ Error processing appointment:', error);
       toast({
-        title: "Appointment Booked",
-        description: "Your appointment is booked but we couldn't send a confirmation email. We'll still contact you to confirm.",
+        title: "Booking Error",
+        description: "There was an error processing your appointment. Please try again or contact us directly.",
         variant: "destructive",
       });
+      setIsSubmitting(false);
+      return;
     }
     
     // Reset form
