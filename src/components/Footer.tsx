@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Link } from "react-router-dom";
 import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin, Clock, ArrowUp } from "lucide-react";
 
 const Footer = () => {
@@ -45,22 +46,22 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-300 hover:text-hospital-primary transition-colors">Home</a>
+                <Link to="/" className="text-gray-300 hover:text-hospital-primary transition-colors">Home</Link>
               </li>
               <li>
-                <a href="#services" className="text-gray-300 hover:text-hospital-primary transition-colors">Our Services</a>
+                <Link to="/services" className="text-gray-300 hover:text-hospital-primary transition-colors">Our Services</Link>
               </li>
               <li>
-                <a href="#doctors" className="text-gray-300 hover:text-hospital-primary transition-colors">Our Doctors</a>
+                <Link to="/doctors" className="text-gray-300 hover:text-hospital-primary transition-colors">Our Doctors</Link>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-hospital-primary transition-colors">Appointments</a>
+                <Link to="/book-appointment" className="text-gray-300 hover:text-hospital-primary transition-colors">Appointments</Link>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-hospital-primary transition-colors">About Us</a>
+                <Link to="/about" className="text-gray-300 hover:text-hospital-primary transition-colors">About Us</Link>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-hospital-primary transition-colors">Contact</a>
+                <Link to="/contact" className="text-gray-300 hover:text-hospital-primary transition-colors">Contact</Link>
               </li>
             </ul>
           </div>
@@ -71,24 +72,11 @@ const Footer = () => {
               Our Services
             </h3>
             <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-300 hover:text-hospital-primary transition-colors">Cardiology</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-hospital-primary transition-colors">Neurology</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-hospital-primary transition-colors">Pediatrics</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-hospital-primary transition-colors">Orthopedics</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-hospital-primary transition-colors">Primary Care</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-hospital-primary transition-colors">Ophthalmology</a>
-              </li>
+              {["Cardiology", "Neurology", "Pediatrics", "Orthopedics", "Primary Care", "Ophthalmology"].map((s) => (
+                <li key={s}>
+                  <Link to="/services" className="text-gray-300 hover:text-hospital-primary transition-colors">{s}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 

@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
-import { Calendar, Mail, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Doctor {
@@ -133,13 +134,17 @@ const DoctorProfiles = () => {
                   </div>
                   
                   <div className="pt-4 flex flex-wrap gap-2">
-                    <Button size="sm" className="bg-hospital-primary hover:bg-hospital-dark flex-1">
-                      <Calendar className="h-4 w-4 mr-1" />
-                      Schedule
-                    </Button>
-                    <Button size="sm" variant="outline" className="border-hospital-primary text-hospital-primary hover:bg-hospital-light flex-1">
-                      View Profile
-                    </Button>
+                    <Link to="/book-appointment" className="flex-1">
+                      <Button size="sm" className="bg-hospital-primary hover:bg-hospital-dark w-full">
+                        <Calendar className="h-4 w-4 mr-1" />
+                        Schedule
+                      </Button>
+                    </Link>
+                    <Link to="/doctors" className="flex-1">
+                      <Button size="sm" variant="outline" className="border-hospital-primary text-hospital-primary hover:bg-hospital-light w-full">
+                        View Profile
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -148,9 +153,11 @@ const DoctorProfiles = () => {
         </div>
         
         <div className="text-center mt-12">
-          <Button className="bg-hospital-primary hover:bg-hospital-dark">
-            View All Doctors
-          </Button>
+          <Link to="/doctors">
+            <Button className="bg-hospital-primary hover:bg-hospital-dark">
+              View All Doctors
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

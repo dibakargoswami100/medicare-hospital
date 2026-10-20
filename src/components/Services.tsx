@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Heart, Brain, Stethoscope, Baby, Bone, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -91,12 +92,14 @@ const Services = () => {
                   <h3 className="text-xl font-semibold text-gray-900">{service.title}</h3>
                 </div>
                 <p className="text-gray-600 mb-4">{service.description}</p>
-                <Button
-                  variant="ghost"
-                  className="text-hospital-primary hover:text-hospital-dark hover:bg-hospital-light"
-                >
-                  Learn More
-                </Button>
+                <Link to="/services">
+                  <Button
+                    variant="ghost"
+                    className="text-hospital-primary hover:text-hospital-dark hover:bg-hospital-light"
+                  >
+                    Learn More
+                  </Button>
+                </Link>
 
                 <div
                   className={`mt-4 overflow-hidden transition-all duration-300 ${
