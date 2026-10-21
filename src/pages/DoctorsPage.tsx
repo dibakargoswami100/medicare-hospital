@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { CalendarPlus, Search, Star, GraduationCap, Clock3, MapPin } from "lucide-react";
+import drRobertKim from "@/assets/dr-robert-kim.jpg";
 
 interface Doctor {
   id: number;
@@ -83,7 +84,7 @@ const doctors: Doctor[] = [
     id: 6,
     name: "Dr. Robert Kim",
     specialty: "Primary Care",
-    image: "https://images.unsplash.com/photo-1537368910025-700350fe96c7?q=80&w=687&auto=format&fit=crop",
+    image: drRobertKim,
     rating: 4.8,
     reviews: 389,
     experience: "11+ years",
