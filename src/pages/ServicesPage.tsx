@@ -100,17 +100,16 @@ const ServicesPage = () => {
 
       <main className="flex-grow">
         {/* Page hero */}
-        <section className="relative bg-hospital-dark py-24 lg:py-28 overflow-hidden">
-          <div className="absolute inset-0 opacity-10 bg-gradient-to-br from-hospital-primary to-transparent"></div>
-          <div className="container mx-auto px-4 relative">
-            <div className="max-w-3xl">
-              <p className="text-white/70 font-medium tracking-widest mb-3 animate-fade-in">
+        <section className="bg-gradient-to-r from-hospital-light to-white py-24 lg:py-32">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-hospital-primary font-medium mb-3 animate-fade-in">
                 WHAT WE DO
-              </p>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in delay-100">
-                Our Medical <span className="text-white">Services</span>
+              </h2>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 animate-fade-in delay-100">
+                Our Medical <span className="text-hospital-primary">Services</span>
               </h1>
-              <p className="text-lg leading-relaxed max-w-2xl animate-fade-in delay-200">
+              <p className="text-lg text-gray-600 animate-fade-in delay-200">
                 From routine check-ups to complex surgery, every department at MediCare
                 is built around one goal: getting you back to full health with the
                 least stress possible.

@@ -143,17 +143,16 @@ const DoctorsPage = () => {
 
       <main className="flex-grow">
         {/* Page hero */}
-        <section className="relative bg-hospital-dark py-24 lg:py-28 overflow-hidden">
-          <div className="absolute inset-0 opacity-10 bg-gradient-to-br from-hospital-secondary to-transparent"></div>
-          <div className="container mx-auto px-4 relative">
-            <div className="max-w-3xl">
-              <p className="text-white/70 font-medium tracking-widest mb-3 animate-fade-in">
+        <section className="bg-gradient-to-r from-hospital-light to-white py-24 lg:py-32">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-hospital-primary font-medium mb-3 animate-fade-in">
                 OUR TEAM
-              </p>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in delay-100">
-                Meet Our <span className="text-white">Specialists</span>
+              </h2>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 animate-fade-in delay-100">
+                Meet Our <span className="text-hospital-primary">Specialists</span>
               </h1>
-              <p className="text-lg leading-relaxed max-w-2xl animate-fade-in delay-200">
+              <p className="text-lg text-gray-600 animate-fade-in delay-200">
                 Board-certified doctors across every major specialty — each one chosen
                 as much for their empathy as for their expertise.
               </p>
